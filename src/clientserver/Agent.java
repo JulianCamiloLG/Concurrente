@@ -88,7 +88,7 @@ public class Agent implements Runnable{
                 synchronized(theClients){                   
                     aSocket = this.theSeverServerSocket.accept();
                     this.theClients.add(new SocketController(aSocket,this));
-                    String ip = aSocket.getRemoteSocketAddress().toString().substring(1);
+                    String ip = aSocket.getRemoteSocketAddress().toString().substring(1).split(":")[0];
                     this.theClients.getLast().setName(ip);
                     String direcciones = this.getDirecciones();
                     this.theClients.getLast().writeText("ips:"+direcciones);
