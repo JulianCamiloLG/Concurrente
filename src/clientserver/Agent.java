@@ -5,6 +5,7 @@
  */
 package clientserver;
 
+import Vistas.MainFrame;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -102,17 +103,21 @@ public class Agent implements Runnable{
     public void Command(String command){
 //        synchronized(theClients){
             command = command.toUpperCase();
+            MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+command);
             if(command.equals("QUIT")){
                 for (SocketController theClient : theClients) {
+                    MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+theClient.getName()+":"+command);
                     theClient.setQuit(true);
                 }
                 quit = true;
             }
             else if(command.startsWith("CONNECT:")){
+                MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+command);
                 String ip = command.substring(8);
                 this.connect(ip);
             }else if(command.startsWith("IPS:")){
                 String ips = command.substring(4);
+                MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+command);
                 String direcciones[] = ips.split(",");
                 for (int i = 0; i < direcciones.length-1; i++) {
                     this.connect(direcciones[i]);
@@ -123,13 +128,16 @@ public class Agent implements Runnable{
                 {
                     sender.setListaenviada(true);
                     sender.writeText("ips:"+this.getDirecciones()+","+sender.getTheSocket().getLocalSocketAddress().toString().split(":")[0]);
+                    MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+"ips:"+this.getDirecciones()+","+sender.getTheSocket().getLocalSocketAddress().toString().split(":")[0]);
                 }
             }else if(command.startsWith("SENDALL ")){
                 for (SocketController theClient : theClients) {
+                    MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+theClient.getName()+":"+command);
                     theClient.writeText(command.substring(8));
                 }
             }else if(command.startsWith("GETIPS")){
                 System.out.println(this.getDirecciones());
+                MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+command);
             }
 //        }
     }
