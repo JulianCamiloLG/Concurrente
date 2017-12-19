@@ -103,7 +103,7 @@ public class Agent implements Runnable{
     public void Command(String command){
 //        synchronized(theClients){
             command = command.toUpperCase();
-            MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+command);
+            //MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+command);
             if(command.equals("QUIT")){
                 for (SocketController theClient : theClients) {
                     MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+theClient.getName()+":"+command);
@@ -132,12 +132,12 @@ public class Agent implements Runnable{
                 }
             }else if(command.startsWith("SENDALL ")){
                 for (SocketController theClient : theClients) {
-                    MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+theClient.getName()+":"+command);
+                    MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+theClient.getName()+":"+command.substring(8));
                     theClient.writeText(command.substring(8));
                 }
             }else if(command.startsWith("GETIPS")){
                 System.out.println(this.getDirecciones());
-                MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+command);
+                MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+command+": "+this.getDirecciones());
             }
 //        }
     }

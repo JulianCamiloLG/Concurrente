@@ -144,7 +144,7 @@ public final class MainFrame extends javax.swing.JFrame {
 //            System.out.println(ex);
 //        }
         if(agent != null){
-            agent.start();
+            //agent.start();
             agent.Command("connect:"+iplabel.getText());
         }
     }//GEN-LAST:event_conectarActionPerformed
