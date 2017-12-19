@@ -77,7 +77,7 @@ public class SocketController implements Runnable{
     public void run() {
         String message = null;
         
-        writeText("100 broadcastserver");
+        //writeText("100 broadcastserver");
         MainFrame.textArea.setText(MainFrame.textArea.getText()+"100 broadcastserver");
         while(!isQuit()){
             message = readText();

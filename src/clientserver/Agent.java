@@ -107,6 +107,7 @@ public class Agent implements Runnable{
             if(command.equals("QUIT")){
                 for (SocketController theClient : theClients) {
                     MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+command);
+                    theClient.writeText(theClient.getTheSocket().getLocalAddress().toString().substring(1).split(":")[0]+": "+command);
                     theClient.setQuit(true);
                 }
                 quit = true;
@@ -128,7 +129,7 @@ public class Agent implements Runnable{
                 {
                     sender.setListaenviada(true);
                     sender.writeText("ips:"+this.getDirecciones()+","+sender.getTheSocket().getLocalSocketAddress().toString().split(":")[0]);
-                    MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+"ips:"+this.getDirecciones()+","+sender.getTheSocket().getLocalSocketAddress().toString().split(":")[0]);
+                    //MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+"ips:"+this.getDirecciones()+","+sender.getTheSocket().getLocalSocketAddress().toString().split(":")[0]);
                 }
             }else if(command.startsWith("SENDALL ")){
                 for (SocketController theClient : theClients) {
