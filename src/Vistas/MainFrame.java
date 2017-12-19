@@ -13,18 +13,27 @@ import java.util.Scanner;
  *
  * @author JulianCamilo
  */
-public class MainFrame extends javax.swing.JFrame {
+public final class MainFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form MainFrame
      */
     
     Agent agent;
-    public MainFrame() {
+    public MainFrame(Agent agent) {
         initComponents();
-         this.agent= null;
+         this.agent= agent;
     }
 
+    public Agent getAgent() {
+        return agent;
+    }
+
+    public void setAgent(Agent agent) {
+        this.agent = agent;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -129,11 +138,11 @@ public class MainFrame extends javax.swing.JFrame {
     private void conectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conectarActionPerformed
         // TODO add your handling code here:
         
-        try{
-            agent = new Agent(11000);
-        }catch(IOException ex){
-            System.out.println(ex);
-        }
+//        try{
+//            agent = new Agent(11000);
+//        }catch(IOException ex){
+//            System.out.println(ex);
+//        }
         if(agent != null){
             agent.start();
             agent.Command("connect:"+iplabel.getText());
@@ -184,7 +193,7 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                new MainFrame(null).setVisible(true);
             }
         });
     }
