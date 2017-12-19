@@ -152,7 +152,7 @@ public final class MainFrame extends javax.swing.JFrame {
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         // TODO add your handling code here:
         if(agent != null){
-            agent.Command("sendall:"+mensaje.getText());
+            agent.Command("sendall "+mensaje.getText());
         }
     }//GEN-LAST:event_sendActionPerformed
 

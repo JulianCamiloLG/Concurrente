@@ -132,8 +132,8 @@ public class Agent implements Runnable{
                 }
             }else if(command.startsWith("SENDALL ")){
                 for (SocketController theClient : theClients) {
-                    MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+theClient.getName()+":"+command.substring(8));
-                    theClient.writeText(command.substring(8));
+                    MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+"Yo: "+command.substring(8));
+                    theClient.writeText(theClient.getTheSocket().getLocalAddress().toString().substring(1).split(":")[0]+": "+command.substring(8));
                 }
             }else if(command.startsWith("GETIPS")){
                 System.out.println(this.getDirecciones());

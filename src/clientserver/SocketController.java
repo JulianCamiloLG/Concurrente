@@ -84,8 +84,7 @@ public class SocketController implements Runnable{
             if(message.startsWith("ips:")){
                 agent.Command(message);
             }
-            System.out.println(message);
-            
+            MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+message);
             //this.listamensaje.add(message);
         }
         close();
