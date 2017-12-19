@@ -106,15 +106,15 @@ public class Agent implements Runnable{
             //MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+command);
             if(command.equals("QUIT")){
                 for (SocketController theClient : theClients) {
-                    MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+theClient.getName()+":"+command);
+                    MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+command);
                     theClient.setQuit(true);
                 }
                 quit = true;
             }
             else if(command.startsWith("CONNECT:")){
-                MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+command);
                 String ip = command.substring(8);
                 this.connect(ip);
+                MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+command);
             }else if(command.startsWith("IPS:")){
                 String ips = command.substring(4);
                 MainFrame.textArea.setText(MainFrame.textArea.getText()+"\n"+command);
